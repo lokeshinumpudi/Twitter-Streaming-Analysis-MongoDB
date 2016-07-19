@@ -1,0 +1,114 @@
+{
+  "_args": [
+    [
+      "chart.js",
+      "C:\\Users\\LowKeys\\Desktop\\mini-project"
+    ]
+  ],
+  "_from": "chart.js@*",
+  "_id": "chart.js@2.0.2",
+  "_inCache": true,
+  "_location": "/chart.js",
+  "_nodeVersion": "4.2.6",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/chart.js-2.0.2.tgz_1460846772379_0.007163290865719318"
+  },
+  "_npmUser": {
+    "email": "tannerlinsley@gmail.com",
+    "name": "tannerlinsley"
+  },
+  "_npmVersion": "3.7.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "chart.js",
+    "raw": "chart.js",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/chart.js/-/chart.js-2.0.2.tgz",
+  "_shasum": "47f1d49aa5fcf513c5c5ea518436699329edc52b",
+  "_shrinkwrap": null,
+  "_spec": "chart.js",
+  "_where": "C:\\Users\\LowKeys\\Desktop\\mini-project",
+  "bugs": {
+    "url": "https://github.com/nnnick/Chart.js/issues"
+  },
+  "dependencies": {
+    "chartjs-color": "^1.0.2",
+    "moment": "^2.10.6"
+  },
+  "description": "Simple HTML5 charts using the canvas element.",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "browserify-istanbul": "^0.2.1",
+    "coveralls": "^2.11.6",
+    "gulp": "3.9.x",
+    "gulp-concat": "~2.1.x",
+    "gulp-connect": "~2.0.5",
+    "gulp-html-validator": "^0.0.2",
+    "gulp-jshint": "~1.5.1",
+    "gulp-karma": "0.0.4",
+    "gulp-replace": "^0.4.0",
+    "gulp-size": "~0.4.0",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "~0.2.x",
+    "gulp-umd": "~0.2.0",
+    "gulp-util": "~2.2.x",
+    "inquirer": "^0.5.1",
+    "jasmine": "^2.3.2",
+    "jasmine-core": "^2.3.4",
+    "jquery": "^2.1.4",
+    "jshint-stylish": "~2.1.0",
+    "karma": "^0.12.37",
+    "karma-browserify": "^5.0.1",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.1",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6",
+    "karma-jasmine-html-reporter": "^0.1.8",
+    "merge-stream": "^1.0.0",
+    "semver": "^3.0.1",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "47f1d49aa5fcf513c5c5ea518436699329edc52b",
+    "tarball": "https://registry.npmjs.org/chart.js/-/chart.js-2.0.2.tgz"
+  },
+  "gitHead": "67625063a3c1242ca13858aa629668007b5b8106",
+  "homepage": "http://www.chartjs.org",
+  "installable": true,
+  "main": "src/chart.js",
+  "maintainers": [
+    {
+      "name": "etimberg",
+      "email": "evert.timberg+npm@gmail.com"
+    },
+    {
+      "name": "nnnick",
+      "email": "hello@nickdownie.com"
+    },
+    {
+      "name": "tannerlinsley",
+      "email": "tannerlinsley@gmail.com"
+    }
+  ],
+  "name": "chart.js",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnnick/Chart.js.git"
+  },
+  "scripts": {},
+  "spm": {
+    "main": "Chart.js"
+  },
+  "version": "2.0.2"
+}

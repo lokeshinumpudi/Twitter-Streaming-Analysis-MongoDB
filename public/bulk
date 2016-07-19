@@ -1,0 +1,15 @@
+var bulkOps = [];
+
+db.getCollection("IPL2016").find({"created_at": {"$exists": true, "$type": 2 }}).forEach(function (doc) {
+	 var newDate = new Date(doc.created_at);
+	 bulkOps.push(
+			 {
+					 "updateOne": {
+							 "filter": { "_id": doc._id } ,
+							 "update": { "$set": { "created_at": newDate } }
+					 }
+			 }
+	 );
+});
+
+db.getCollection("IPL2016").bulkWrite(bulkOps, { "ordered": true });

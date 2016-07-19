@@ -1,0 +1,229 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="libs/css/bootstrap.min.css">
+
+	<!-- <link rel="stylesheet" href="libs/css/chartist.min.css"> -->
+
+	<style media="screen">
+		#tabs {
+			left: 40%;
+		}
+
+		.label{
+			font-size:100% !important;
+		}
+		
+		@media(max-width:800px) {
+			#tabs {
+				left: 12%;
+			}
+		}
+		
+		.credits-chart {
+			left: -75px;
+		}
+		
+		.hide {
+			display: none;
+			visibility: hidden;
+		}
+		
+		.negativeTweet {
+			border: 2px solid red;
+		}
+		
+		.positiveTweet {
+			border: 2px solid green;
+		}
+		
+		.credits span {
+			font-size: 26px;
+			color: #fff;
+			font-weight: 600;
+		}
+		
+		.jumbotron {
+			background-color: #ff5722;
+		}
+		
+		.jumbotron input[type=text] {
+			box-shadow: inset 0 -2px 0 #ff8a65;
+			color: #fff;
+			font-size: 2em;
+			font-weight: 700;
+			font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+		}
+		
+		.jumbotron button[type=submit] {
+			background-color: #2979ff;
+		}
+		
+		.jumbotron input[type=text]:focus {
+			box-shadow: inset 0 -2px 0 #eeeeee;
+		}
+		
+		.project-title h1 {
+			font-size: 38px;
+			font-weight: 500;
+			color: #fff;
+			font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		}
+		
+		.topics-title h2 {
+			font-size: 27px;
+			font-weight: 500;
+			color: #fff;
+			font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		}
+		/*Polarity start*/
+		
+		.polarity path {
+			stroke: #fff;
+		}
+		
+		.polarity path:hover {
+			opacity: 0.9;
+		}
+		
+		.polarity rect:hover {
+			fill: #4CB5AE;
+		}
+		
+		.polarity .axis {
+			font: 10px sans-serif;
+		}
+		
+		.polarity .legend tr {
+			border-bottom: 1px solid grey;
+		}
+		
+		.polarity .legend tr:first-child {
+			border-top: 1px solid grey;
+		}
+		
+		.polarity .axis path,
+		.polarity .axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		
+		.polarity .x.axis path {
+			display: none;
+		}
+		
+		.polarity .legend {
+			margin-bottom: 76px;
+			display: inline-block;
+			border-collapse: collapse;
+			border-spacing: 0px;
+		}
+		
+		.polarity .legend td {
+			padding: 4px 5px;
+			vertical-align: bottom;
+		}
+		
+		.polarity .legendFreq,
+		.legendPerc {
+			align: right;
+			width: 50px;
+		}
+		/*Polarity end*/
+	</style>
+</head>
+
+<body>
+
+
+	<div class="container container-fluid" id="project-head-section">
+		<div class="jumbotron text-center project-title">
+			<h1>Sentiment & Data Analysis on Twitter </h1>
+
+			<form name="searchform">
+				<div class="form-group">
+					<input class="form-control input-lg" type="text" id="searchfield" name="searchText" placeholder="Search topics in realtime"> </div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-lg btn-primary">Search</button>
+					</div>
+				</div>
+			</form>
+
+			<div class="text-center topics-title">
+				<h2>Top Topics</h2>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div id="topTopicContainer" class="">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="static-container"></div>
+					</div>
+				</div>
+
+				<div class="row credits">
+					<div class="col-sm-12">
+						<span>By :</span> <button class="btn btn-default btn-lg" id="credits-btn">Credits</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!--end of top section- ->
+		<!-- Charts  section start-->
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-6 credits-chart" id="credits-charts">
+			</div>
+		</div>
+
+
+		<div class="btn-group row" id="tabs">
+			<button type="button" name="metrics-tab" data-target="metrics-section" class="btn btn-default active">Metrics</button>
+			<button type="button" id="tweets-source-btn" name="tweets-tab" data-target="tweets-section" class="btn btn-default">Source tweets</button>
+		</div>
+
+		<!--metrics section start-->
+		<div id="metrics-section">
+
+			<div class=" row charts">
+				<div class="col-sm-4 polarity text-center">
+				</div>
+				<div class=" col-sm-8 source" id="source">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6 lang">
+				</div>
+				<div class="col-sm-6 time-series">
+				</div>
+			</div>
+
+		</div>
+		<!--end of metrics section-->
+		<div id="tweets-section">
+			<span class="label label-success">	Classified Positive</span>
+			<span class="label label-danger">	Classified Negative</span>
+
+		</div>
+
+
+	</div>
+
+
+	<!--libs-->
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/bootstrap.min.js"></script>
+	<script src="libs/d3.min.js"></script>
+	<script src="libs/d3pie.min.js"></script>
+	<script src="libs/chart.js/dist/Chart.bundle.min.js"></script>
+	<script src="libs/polarityDashboard.js"></script>
+	<!--project source code-->
+	<script src="js/app.js"></script>
+</body>
+
+</html>

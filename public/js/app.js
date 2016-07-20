@@ -450,12 +450,17 @@ $(function () {
 		isCreditsActive = !isCreditsActive;
 	});
 
+	var ApiEndPoint;
+	if (location.hostname != "localhost") {
+		ApiEndPoint = location.origin;
+	}else{
+		 ApiEndPoint = "http://localhost:3030";
+	}
 
 
-	var ApiEndPoint = "http://localhost:3030";
 
 
-var topTopicsContainer = $("#topTopicContainer");
+	var topTopicsContainer = $("#topTopicContainer");
 	// realtime search of topics
 
 	$("form").submit(function (e) {
@@ -463,7 +468,7 @@ var topTopicsContainer = $("#topTopicContainer");
 		$searchText = $("#searchfield").val().trim();
 		currentSelectedTopic = $searchText;
 		$.ajax({
-			url: "http://localhost:3030/search",
+			url: ApiEndPoint+"/search",
 			method: "GET",
 			data: { "searchText": $searchText }
 		}).done(function (res) {
@@ -476,7 +481,7 @@ var topTopicsContainer = $("#topTopicContainer");
 			eachbtn.addClass("TopTopicsBtns");
 			eachbtn.text($searchText);
 			topTopicsContainer.append(eachbtn);
-		eachbtn.click(handleTopTopicBtnClick);
+			eachbtn.click(handleTopTopicBtnClick);
 
 			res = JSON.parse(res);
 			RenderCharts(res, false);
@@ -544,7 +549,7 @@ var topTopicsContainer = $("#topTopicContainer");
 			}).done(function (res) {
 				res = JSON.parse(res);
 				cacheTweets[currentSelectedTopic] = res;
-				console.log(res);
+				// console.log(res);
 				renderTweets(res);
 			});
 
@@ -553,7 +558,7 @@ var topTopicsContainer = $("#topTopicContainer");
 		// available in cache so dont htto request again
 		if (currentSelectedTopic && currentSelectedTopic != null && cacheTweets[currentSelectedTopic]) {
 			var tweets = cacheTweets[currentSelectedTopic];
-			console.log(tweets);
+			// console.log(tweets);
 			renderTweets(tweets);
 		}
 
@@ -635,7 +640,7 @@ var topTopicsContainer = $("#topTopicContainer");
 
 	function RenderCharts(data, isStatic) {
 		// polarity
-		console.log(data);
+		// console.log(data);
 
 		// static means [pre collected and analysed tweets ;ex amazon,android,iphone,obama]
 		if (isStatic) {

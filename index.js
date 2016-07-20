@@ -6,6 +6,7 @@ var assert = require("assert");
 var request = require("request");
 var Twit = require("twit");
 var qs = require("qs");
+var serveStatic = require("serve-static");
 var polarityFnc = require("./utilities/polarityfinder.js");
 var aggrFnc = require("./utilities/aggregate.js");
 
@@ -21,6 +22,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use("/",serveStatic("public"));
+
 
 // returns the avg of a given array[nums]
 var avg = function (array) { return (array.reduce(function (a, b) { return a + b })) / array.length; }
@@ -35,7 +38,7 @@ var T = new Twit({
 
 // determines the db connection [cloud or local]
 var isCloudDB = false;
-MongoClient.connect(globalConfig.localMongoUrl, function (err, db) {
+MongoClient.connect(globalConfig.cloudMongoUrl, function (err, db) {
     assert.equal(null, err);
     console.log("Mongo db server running!");
     db.stats().then(function (data) {
@@ -200,6 +203,9 @@ app.get("/tweets/:tweetCollectionName",function(req,res,next){
 
 
 // listen on port
+
+// // serve static here
+// app.get("/",),
 
 app.listen("3030", function () {
     console.log("Server listening on port: 3030");

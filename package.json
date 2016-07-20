@@ -1,0 +1,36 @@
+{
+  "name": "mini-project",
+  "version": "1.0.0",
+  "description": "mini-project on sentiment analysis and data analytics",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.12.3",
+    "mongodb": "^2.1.16",
+    "request": "^2.60.0",
+    "serve-static": "^1.10.0",
+    "socket.io": "^1.3.5",
+    "mongoose": "^4.1.0",
+    "twit": "^2.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokismaxis/mini-project-2016.git"
+  },
+  "keywords": [
+    "twitter-sentiment",
+    "node",
+    "mongodb"
+  ],
+  "author": "lokesh_chandra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lokismaxis/mini-project-2016/issues"
+  },
+  "homepage": "https://github.com/lokismaxis/mini-project-2016#readme"
+}

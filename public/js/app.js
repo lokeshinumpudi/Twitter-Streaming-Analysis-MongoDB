@@ -454,7 +454,7 @@ $(function () {
 	if (location.hostname != "localhost") {
 		ApiEndPoint = location.origin;
 	}else{
-		 ApiEndPoint = "http://localhost:3030";
+		 ApiEndPoint = "http://localhost:5000";
 	}
 
 

@@ -13,6 +13,7 @@ var aggrFnc = require("./utilities/aggregate.js");
 // express init and bodyParser,json init with Access-Control configured
 var app = require("express")();
 var bodyParser = require("body-parser");
+app.set('port',process.env.PORT || 5000);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
@@ -213,8 +214,8 @@ MongoClient.connect(globalConfig.cloudMongoUrl, function (err, db) {
 // // serve static here
 // app.get("/",),
 
-app.listen("3030", function () {
+app.listen(app.get('port'), function () {
 
-    
-    console.log("Server listening on port: 3030");
+
+    console.log("Server listening on port:",app.get('port'));
 });

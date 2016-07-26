@@ -18,6 +18,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
+  "engines":{
+    "node":"4.4.7"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lokismaxis/mini-project-2016.git"

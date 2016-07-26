@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use("/",serveStatic("public"));
+app.use("/", serveStatic("public"));
 
 
 // returns the avg of a given array[nums]
@@ -73,14 +73,15 @@ MongoClient.connect(globalConfig.cloudMongoUrl, function (err, db) {
         // console.log(searchterm);
         searchterm = searchterm.split(",")[0].trim();
         var collectionId = searchterm + Date.now();
-        // console.log(searchterm);
+        console.log(searchterm);
         var tmpCol = db.collection(searchterm);
         var stream = T.stream("statuses/filter", { track: searchterm });
         var count = 0;
         var countTimes = [];
         var countIncrTimeOld = Date.now();
-        stream.on("tweet", function (tweet) {
 
+        stream.on("tweet", function (tweet) {
+            // console.log("tweet came");
             tweet["created_at"] = new Date(tweet["created_at"]);
             count += 1;
             var newcountIncrTime = Date.now();
@@ -92,7 +93,7 @@ MongoClient.connect(globalConfig.cloudMongoUrl, function (err, db) {
             } else {
                 var avgtimes = avg(countTimes);
             }
-            console.log(count);
+            // console.log(count);
             // todo:change the tweet created_at[type from string to date]
             // so we can us use it to extract month,year,day using mongodb native project operators[$date,$month,$month]
             tmpCol.insert(tweet);
@@ -134,6 +135,11 @@ MongoClient.connect(globalConfig.cloudMongoUrl, function (err, db) {
                 });//update
             }//if>200
         });//stream.on
+
+        stream.on("error", function (err) {
+            console.log(err.message);
+        });
+
     });//app.get
 
     // dummy api
@@ -177,20 +183,20 @@ MongoClient.connect(globalConfig.cloudMongoUrl, function (err, db) {
             return next(error);
         }
     });//get collectionname api
-app.get("/tweets/:tweetCollectionName",function(req,res,next){
-    var colname = req.params.tweetCollectionName;
-    try{
-        var Collection = db.collection(colname.trim());
-        //now that collection exists get the tweets from the collection
-        Collection.find({},{created_at:1,text:1,timestamp_ms:1,"entities.media":1,user:1,id_str:1,polarity:1,lang:1}).toArray(function(err,docs){
-            assert.equal(null,err);
-            res.end(JSON.stringify(docs));
-        });
-    }catch(error){
-        return next(error);
-    }
+    app.get("/tweets/:tweetCollectionName", function (req, res, next) {
+        var colname = req.params.tweetCollectionName;
+        try {
+            var Collection = db.collection(colname.trim());
+            //now that collection exists get the tweets from the collection
+            Collection.find({}, { created_at: 1, text: 1, timestamp_ms: 1, "entities.media": 1, user: 1, id_str: 1, polarity: 1, lang: 1 }).toArray(function (err, docs) {
+                assert.equal(null, err);
+                res.end(JSON.stringify(docs));
+            });
+        } catch (error) {
+            return next(error);
+        }
 
-});//get tweets of a collection
+    });//get tweets of a collection
 
 });//connect mongo [all db using routes go inside]
 
@@ -208,5 +214,7 @@ app.get("/tweets/:tweetCollectionName",function(req,res,next){
 // app.get("/",),
 
 app.listen("3030", function () {
+
+    
     console.log("Server listening on port: 3030");
-})
+});

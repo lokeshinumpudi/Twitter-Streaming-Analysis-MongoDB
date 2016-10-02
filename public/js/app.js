@@ -1,6 +1,18 @@
 $(function () {
 
 
+	function setCurrentSelectedtopic(text) {
+		document.getElementById("selected-topic-for-metrics").innerText = text;
+		// loadingclass(true);
+	}
+
+	function loadingclass(bool) {
+		if (bool) {
+			document.getElementById("setCurrentSelectedtopic").classList.remove("hide");
+		} else {
+			document.getElementById("setCurrentSelectedtopic").classList.add("hide");
+		}
+	}
 
 
 	var StaticData = {
@@ -453,8 +465,8 @@ $(function () {
 	var ApiEndPoint;
 	if (location.hostname != "localhost") {
 		ApiEndPoint = location.origin;
-	}else{
-		 ApiEndPoint = "http://localhost:5000";
+	} else {
+		ApiEndPoint = "http://localhost:5000";
 	}
 
 
@@ -467,8 +479,11 @@ $(function () {
 		e.preventDefault();
 		$searchText = $("#searchfield").val().trim();
 		currentSelectedTopic = $searchText;
+		//show some loading status
+		setCurrentSelectedtopic("Fetching latest tweets on "+ currentSelectedTopic + " and processing....");
+
 		$.ajax({
-			url: ApiEndPoint+"/search",
+			url: ApiEndPoint + "/search",
 			method: "GET",
 			data: { "searchText": $searchText }
 		}).done(function (res) {
@@ -484,6 +499,7 @@ $(function () {
 			eachbtn.click(handleTopTopicBtnClick);
 
 			res = JSON.parse(res);
+			setCurrentSelectedtopic(currentSelectedTopic);
 			RenderCharts(res, false);
 		});
 	});//form submit
@@ -624,12 +640,16 @@ $(function () {
 		// now that a button is clicked lets trigger the tweet-section selected [so itll fetch the tweets]
 		$("#tweets-source-btn").trigger("click");
 
+		setCurrentSelectedtopic("Gathering tweets and metrics for  "+currentSelectedTopic+" ...");
+
 		$.ajax({
 			url: btnUrl,
 			method: "GET",
 		}).done(function (res) {
 			res = JSON.parse(res);
 			//render our charts
+			setCurrentSelectedtopic(currentSelectedTopic);
+			console.log("wtf")
 			RenderCharts(res);
 		});
 

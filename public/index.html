@@ -6,6 +6,9 @@
 	<!-- <link rel="stylesheet" href="libs/css/chartist.min.css"> -->
 
 	<style media="screen">
+		.hide{
+			display:none;
+		}
 		#tabs {
 			left: 40%;
 		}
@@ -143,23 +146,25 @@
 
 			<form name="searchform">
 				<div class="form-group">
-					<input class="form-control input-lg" type="text" id="searchfield" name="searchText" placeholder="Search topics in realtime"> </div>
+					<input class="form-control input-lg" type="text" id="searchfield" name="searchText" placeholder="Enter a topic to be tracked from twitter"> </div>
 				<div class="row">
 					<div class="col-sm-12">
-						<button type="submit" class="btn btn-lg btn-primary">Search</button>
+						<button type="submit" class="btn btn-lg btn-primary">Go Fetch!</button>
 					</div>
 				</div>
 			</form>
 
 			<div class="text-center topics-title">
-				<h2>Top Topics</h2>
+				<h2></h2>
 
 				<div class="row">
 					<div class="col-sm-6">
+						<h2>Recently searched topics</h2>
 						<div id="topTopicContainer" class="">
 						</div>
 					</div>
 					<div class="col-sm-6">
+						<h2>Pre collected tweets <span>[by us]</span></h2>
 						<div class="static-container"></div>
 					</div>
 				</div>
@@ -184,6 +189,11 @@
 		<div class="btn-group row" id="tabs">
 			<button type="button" name="metrics-tab" data-target="metrics-section" class="btn btn-default active">Metrics</button>
 			<button type="button" id="tweets-source-btn" name="tweets-tab" data-target="tweets-section" class="btn btn-default">Source tweets</button>
+		</div>
+
+		<div style="text-align:center">
+			<strong id="selected-topic-for-metrics" style="font-size:30px"></strong>
+			<!--<span id="data-loading" class="loading hide">Crunching data and Gererating charts ....</span>-->
 		</div>
 
 		<!--metrics section start-->

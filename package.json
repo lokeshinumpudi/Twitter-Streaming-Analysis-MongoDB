@@ -32,7 +32,7 @@
     "mongodb"
   ],
   "author": "lokesh_chandra",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lokismaxis/mini-project-2016/issues"
   },
